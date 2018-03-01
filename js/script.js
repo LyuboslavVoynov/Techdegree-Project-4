@@ -1,4 +1,4 @@
-
+//still working on it
 const $startScreen = $('#start');
 const $boardScreen = $('#board');
 const $finalScreen = $('#finish');
@@ -70,9 +70,9 @@ function switchPlayerTurn() {
 
 
 function checkIfWon() {
-  // Create empty arrary of moves
-  var winGame = [];
-  //Loop over boxes and add currently placed piece
+ 
+  let winGame = [];
+ 
   $box.each(function(){
     if ($(this).hasClass('box-filled-1')) {
       winGame.push('o');
@@ -87,7 +87,7 @@ function checkIfWon() {
   function checkW(a,b,c){
     return (winGame[a] !== "none" && winGame[a] === winGame[b] && winGame[b] === winGame[c]);
   }
-  // Check the array to find winning combinations. If pieces match one in 8 possible combinations, set the winner to matching name
+ 
     if (checkW(0,1,2)) {
       winner = winGame[0];
       finalScreen();
