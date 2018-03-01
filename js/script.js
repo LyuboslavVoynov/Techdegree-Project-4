@@ -1,4 +1,4 @@
-
+//still working on it
 const $startScreen = $('#start');
 const $boardScreen = $('#board');
 const $finalScreen = $('#finish');
@@ -35,11 +35,11 @@ function playGame()  {
         $(this).css('background-image', 'url("img/x.svg")');
       }
     });
-    $(this).mouseleave(function(){ // On mouseleave, remove the background image
+    $(this).mouseleave(function(){ // remove the background image on mouseleave
       $box.css('background-image', '');
     });
   });
-  $box.click(function(){ // On click, check to see if user already placed piece down. If not, then add class box-filled, add background image, unbind the mouseleave function, fire nextTurn function to switch active class to next player. Check for win condition.
+  $box.click(function(){ // 
     if ($playerOne.hasClass("active")) {
         $(this).addClass('box-filled-1');
         $(this).css('background-image', 'url("img/o.svg")');
@@ -82,7 +82,7 @@ function checkIfWon() {
       winGame.push("none");
     }
   });
-  // Check the array to find winning combinations. If pieces match one in 8 possible combinations, set the winner to matching name
+ 
     if (winGame[0] !== "none" && winGame[0] === winGame[1] && winGame[1] === winGame[2]) {
       winner = winGame[0];
       finalScreen();
@@ -140,7 +140,7 @@ function playerActive(player){
 function playerNotActive(player){
   player.removeClass('active');
 };
-
+// new game
 $newGameButn.click(function() {
     location.reload();
 });
