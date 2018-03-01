@@ -1,4 +1,4 @@
-//still working on it
+
 const $startScreen = $('#start');
 const $boardScreen = $('#board');
 const $finalScreen = $('#finish');
@@ -35,11 +35,11 @@ function playGame()  {
         $(this).css('background-image', 'url("img/x.svg")');
       }
     });
-    $(this).mouseleave(function(){ // remove the background image on mouseleave
+    $(this).mouseleave(function(){ // On mouseleave, remove the background image
       $box.css('background-image', '');
     });
   });
-  $box.click(function(){ // 
+  $box.click(function(){ // On click, check to see if user already placed piece down. If not, then add class box-filled, add background image, unbind the mouseleave function, fire nextTurn function to switch active class to next player. Check for win condition.
     if ($playerOne.hasClass("active")) {
         $(this).addClass('box-filled-1');
         $(this).css('background-image', 'url("img/o.svg")');
@@ -82,29 +82,34 @@ function checkIfWon() {
       winGame.push("none");
     }
   });
- 
-    if (winGame[0] !== "none" && winGame[0] === winGame[1] && winGame[1] === winGame[2]) {
+
+
+  function checkW(a,b,c){
+    return (winGame[a] !== "none" && winGame[a] === winGame[b] && winGame[b] === winGame[c]);
+  }
+  // Check the array to find winning combinations. If pieces match one in 8 possible combinations, set the winner to matching name
+    if (checkW(0,1,2)) {
       winner = winGame[0];
       finalScreen();
-    } else if (winGame[3] !== "none" && winGame[3] === winGame[4] && winGame[4] === winGame[5]) {
+    } else if (checkW(3,4,5)) {
       winner = winGame[3];
       finalScreen();
-    } else if (winGame[6] !== "none" && winGame[6] === winGame[7] && winGame[7] === winGame[8]) {
+    } else if (checkW(6,7,8)) {
       winner = winGame[6];
       finalScreen();
-    } else if (winGame[0] !== "none" && winGame[0] === winGame[3] && winGame[3] === winGame[6]) {
+    } else if (checkW(0,3,6)) {
       winner = winGame[0];
       finalScreen();
-    } else if (winGame[1] !== "none" && winGame[1] === winGame[4] && winGame[4] === winGame[7]) {
+    } else if (checkW(1,4,7)) {
       winner = winGame[1];
       finalScreen();
-    } else if (winGame[2] !== "none" && winGame[2] === winGame[5] && winGame[5] === winGame[8]) {
+    } else if (checkW(2,5,8)) {
       winner = winGame[2];
       finalScreen();
-    } else if (winGame[0] !== "none" && winGame[0] === winGame[4] && winGame[4] === winGame[8]) {
+    } else if (checkW(0,4,8)) {
       winner = winGame[0];
       finalScreen();
-    } else if (winGame[2] !== "none" && winGame[2] === winGame[4] && winGame[4] === winGame[6]) {
+    } else if (checkW(2,4,6)) {
       winner = winGame[2];
       finalScreen();
     } else if (!winGame.includes("none")){
@@ -140,7 +145,7 @@ function playerActive(player){
 function playerNotActive(player){
   player.removeClass('active');
 };
-// new game
+
 $newGameButn.click(function() {
     location.reload();
 });
