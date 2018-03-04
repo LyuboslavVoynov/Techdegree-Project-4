@@ -1,4 +1,4 @@
-//still working on it
+
 const $startScreen = $('#start');
 const $boardScreen = $('#board');
 const $finalScreen = $('#finish');
@@ -6,7 +6,7 @@ const $playerOne = $('#player1');
 const $playerTwo = $('#player2');
 const $box = $('.box');
 const $startButton = $("a.button:contains('Start game')");
-const $newGameButn = $("a.button:contains('New game')");
+const $newGameBttn = $("a.button:contains('New game')");
 
 
 //Displaying the start screen and the board screen when the button is clicked
@@ -24,9 +24,8 @@ const $newGameButn = $("a.button:contains('New game')");
     return playerActive($playerTwo);
   }
   });
-playGame();
 }();
-function playGame()  {
+!function (){
   $box.each(function(){
     $(this).mouseenter(function(){ // Add the background image on hover
       if ( $playerOne.hasClass("active")) {
@@ -56,7 +55,7 @@ function playGame()  {
 
     }
   });
-};
+}();
 
 function switchPlayerTurn() {
   if ( $playerOne.hasClass('active') ) {
@@ -70,9 +69,9 @@ function switchPlayerTurn() {
 
 
 function checkIfWon() {
- 
+  // Create empty arrary of moves
   let winGame = [];
- 
+  //Loop over boxes and add currently placed piece
   $box.each(function(){
     if ($(this).hasClass('box-filled-1')) {
       winGame.push('o');
@@ -84,32 +83,32 @@ function checkIfWon() {
   });
 
 
-  function checkW(a,b,c){
+  function checkForWin(a,b,c){
     return (winGame[a] !== "none" && winGame[a] === winGame[b] && winGame[b] === winGame[c]);
   }
- 
-    if (checkW(0,1,2)) {
+  // Check the array to find winning combinations. If pieces match one in 8 possible combinations, set the winner to matching name
+    if (checkForWin(0,1,2)) {
       winner = winGame[0];
       finalScreen();
-    } else if (checkW(3,4,5)) {
+    } else if (checkForWin(3,4,5)) {
       winner = winGame[3];
       finalScreen();
-    } else if (checkW(6,7,8)) {
+    } else if (checkForWin(6,7,8)) {
       winner = winGame[6];
       finalScreen();
-    } else if (checkW(0,3,6)) {
+    } else if (checkForWin(0,3,6)) {
       winner = winGame[0];
       finalScreen();
-    } else if (checkW(1,4,7)) {
+    } else if (checkForWin(1,4,7)) {
       winner = winGame[1];
       finalScreen();
-    } else if (checkW(2,5,8)) {
+    } else if (checkForWin(2,5,8)) {
       winner = winGame[2];
       finalScreen();
-    } else if (checkW(0,4,8)) {
+    } else if (checkForWin(0,4,8)) {
       winner = winGame[0];
       finalScreen();
-    } else if (checkW(2,4,6)) {
+    } else if (checkForWin(2,4,6)) {
       winner = winGame[2];
       finalScreen();
     } else if (!winGame.includes("none")){
@@ -146,6 +145,6 @@ function playerNotActive(player){
   player.removeClass('active');
 };
 
-$newGameButn.click(function() {
+$newGameBttn.click(function() {
     location.reload();
 });
