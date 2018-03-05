@@ -1,3 +1,5 @@
+//Still working on it, trying to figure out the minimax algorithm, the game works for 2 players though
+
 const $startScreen = $('#start');
 const $boardScreen = $('#board');
 const $finalScreen = $('#finish');
