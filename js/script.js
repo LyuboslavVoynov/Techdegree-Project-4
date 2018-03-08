@@ -200,14 +200,34 @@ function  start1Player(){
   $box.click(function(){ // On click, check to see if user already placed piece down. If not, then add class box-filled, add background image, unbind the mouseleave function, fire nextTurn function to switch active class to next player. Check for win condition.
     if ($playerOne.hasClass("active")) {
         $(this).addClass('box-filled-1');
+        $(this).addClass('selected');
         $(this).css('background-image', 'url("img/o.svg")');
         $(this).off();
-        // checkIfWon();
+        checkIfWon();
         switchPlayerTurn()
-
+        checkMoves()
     }
   });
 };
+ function checkMoves() {
+    let possibleMoves = [];
+    $box.each(function(index){
+      if($(this).hasClass('selected')){
+      } else {
+        possibleMoves.push($(this));
+    }
+  });
+  let random = Math.floor(Math.random() * possibleMoves.length);
+  possibleMoves[random].addClass('box-filled-2');
+  possibleMoves[random].addClass('selected');
+  possibleMoves[random].css('background-image', 'url("img/x.svg")');
+  possibleMoves[random].off();
+  checkIfWon();
+  switchPlayerTurn();
+
+}
+
+
 
 
 
