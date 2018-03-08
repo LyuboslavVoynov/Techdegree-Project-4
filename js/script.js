@@ -204,24 +204,24 @@ function  start1Player(){
         $(this).css('background-image', 'url("img/o.svg")');
         $(this).off();
         checkIfWon();
-        switchPlayerTurn()
-        checkMoves()
+        switchPlayerTurn();
+        CPUplay();
     }
   });
 };
- function checkMoves() {
-    let possibleMoves = [];
+ function CPUplay() {
+    let moves = [];
     $box.each(function(index){
       if($(this).hasClass('selected')){
       } else {
-        possibleMoves.push($(this));
+        moves.push($(this));
     }
   });
-  let random = Math.floor(Math.random() * possibleMoves.length);
-  possibleMoves[random].addClass('box-filled-2');
-  possibleMoves[random].addClass('selected');
-  possibleMoves[random].css('background-image', 'url("img/x.svg")');
-  possibleMoves[random].off();
+  let random = Math.floor(Math.random() * moves.length);
+  moves[random].addClass('box-filled-2');
+  moves[random].addClass('selected');
+  moves[random].css('background-image', 'url("img/x.svg")');
+  moves[random].off();
   checkIfWon();
   switchPlayerTurn();
 
