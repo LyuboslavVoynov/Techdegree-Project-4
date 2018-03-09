@@ -220,15 +220,19 @@ function  start1Player(){
   if (moves.length === 0){
   }else{
     let random = Math.floor(Math.random() * moves.length);
-    moves[random].addClass('box-filled-2');
-    moves[random].addClass('selected');
-    moves[random].css('background-image', 'url("img/x.svg")');
-    moves[random].off();
+    let move = moves[random];
+    CPUStyle(move);
     checkIfWon();
     switchPlayerTurn();
 
   }
-}
+ function CPUStyle(move){
+  move.addClass('box-filled-2');
+  move.addClass('selected');
+  move.css('background-image', 'url("img/x.svg")');
+  move.off();
+ }
+};
 
 
 
