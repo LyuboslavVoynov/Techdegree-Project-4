@@ -1,6 +1,4 @@
-//Still working on it, trying to figure out the minimax algorithm, the game works for 2 players though
-// I will add comments later on
-
+//creating constants
 const $startScreen = $('#start');
 const $boardScreen = $('#board');
 const $finalScreen = $('#finish');
@@ -19,8 +17,9 @@ const $play1Name = $("#name_input_p1");
 const $playTwoPlayerBttn = $("a.button:contains('Start')");
 const $playOnePlayerBttn = $("a.button:contains('Play CPU')");
 const $newGameBttn = $("a.button:contains('New game')");
-
+//immediately invoked function when screen loads
 !function (){
+  //setting gameplay if 2player button is selected
     $play2Buttn.click(function(){
        $startScreen.hide();
        $play2Screen.show();
@@ -40,7 +39,7 @@ const $newGameBttn = $("a.button:contains('New game')");
     });
     start2Player();
   });
-
+//setting gameplay if 1player button is selected
    $playCBttn.click(function(){
      $startScreen.hide();
      $playCScreen.show();
@@ -90,7 +89,7 @@ const $newGameBttn = $("a.button:contains('New game')");
       }
     });
   };
-
+//function to switch the players
   function switchPlayerTurn() {
     if ( $playerOne.hasClass('active') ) {
       $playerOne.removeClass("active");
@@ -105,7 +104,7 @@ const $newGameBttn = $("a.button:contains('New game')");
     }
   };
 
-
+// Checking for win
   function checkIfWon() {
     // Create empty arrary of moves
     let winGame = [];
@@ -155,6 +154,7 @@ const $newGameBttn = $("a.button:contains('New game')");
       }
 
   };
+  //function to display the relevant final screen text
    function finalScreen () {
     if (winner === "o") {
        finitoScreen('screen-win-one',$("#name_input_p21").val()+' Wins!');
@@ -165,7 +165,7 @@ const $newGameBttn = $("a.button:contains('New game')");
     }
   };
 
-
+//function to display the relevant final screen
   function finitoScreen(winClass,text){
     $finalScreen.addClass(winClass);
     $('.message').text(text)
@@ -205,11 +205,14 @@ function  start1Player(){
         $(this).off();
         checkIfWon();
         switchPlayerTurn();
-        CPUplay();
+        setTimeout(CPUplay,1000);//delaying the cpu play, acts like its thinking
     }
   });
 };
+
+//CPU play function
  function CPUplay() {
+   //checks for valid moves
     let moves = [];
     $box.each(function(index){
       if($(this).hasClass('selected')){
@@ -219,6 +222,7 @@ function  start1Player(){
   });
   if (moves.length === 0){
   }else{
+    // select a move from valid moves on a random basis
     let random = Math.floor(Math.random() * moves.length);
     let move = moves[random];
     CPUStyle(move);
@@ -226,6 +230,7 @@ function  start1Player(){
     switchPlayerTurn();
 
   }
+  //applying styles to the boxes
  function CPUStyle(move){
   move.addClass('box-filled-2');
   move.addClass('selected');
