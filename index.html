@@ -9,12 +9,32 @@
 </head>
 <body>
 	<div class="screen screen-start" id="start" >
-	  <header>
-	    <h1>Tic Tac Toe</h1>
-	    <a href="#" class="button">Start game</a>
-	  </header>
+			<header>
+					<h1>Tic Tac Toe</h1>
+					<a href="#" class="button">Play vs. CPU</a>
+					<a href="#" class="button">Play vs. Player 2</a>
+			</header>
 	</div>
-	<div class="board" id="board">
+	<div class="screen screen-start" id="enter_name_p1" style="display: none">
+			<header>
+					<h1>Tic Tac Toe</h1>
+					<form id="name_input_form_p1">
+							<input type="text" id="name_input_p1" name="player_one_name" placeholder="Player 1">
+					</form>
+					<a href="#" class="button">Play CPU</a>
+			</header>
+	</div>
+	<div class="screen screen-start" id="enter_name_p2" style="display: none">
+			<header>
+					<h1>Tic Tac Toe</h1>
+					<form id="name_input_form_p2">
+						  <input type="text" id="name_input_p21" name="name_label player_one_name" placeholder="Player 1">
+							<input type="text" id="name_input_p2" name="name_label player_two_name" placeholder="Player 2">
+					</form>
+					<a href="#" class="button">Start</a>
+			</header>
+	</div>
+	<div class="board" id="board" style="display: none">
   <header>
     <h1>Tic Tac Toe</h1>
     <ul>
@@ -26,19 +46,23 @@
       </li>
     </ul>
   </header>
+	<div>
+			<p id="p1_name_display" class="name_display"></p>
+			<p id="p2_name_display" class="name_display"></p>
+	</div>
   <ul class="boxes">
-    <li class="box"></li>
-    <li class="box"></li>
-    <li class="box"></li>
-    <li class="box"></li>
-    <li class="box"></li>
-    <li class="box"></li>
-    <li class="box"></li>
-    <li class="box"></li>
-    <li class="box"></li>
+    <li class="box" id='0'></li>
+    <li class="box"id='1'></li>
+    <li class="box"id='2'></li>
+    <li class="box"id='3'></li>
+    <li class="box"id='4'></li>
+    <li class="box"id='5'></li>
+    <li class="box"id='6'></li>
+    <li class="box"id='7'></li>
+    <li class="box"id='8'></li>
   </ul>
 </div>
-	<div class="screen screen-win" id="finish" >
+	<div class="screen screen-win" id="finish" style="display: none" >
 	  <header>
 	    <h1>Tic Tac Toe</h1>
 	    <p class="message"></p>
